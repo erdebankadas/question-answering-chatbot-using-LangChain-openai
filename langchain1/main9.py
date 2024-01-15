@@ -12,6 +12,7 @@ OPENAI_API_KEY = ""
 
 # Interval for automatic data updates (in seconds)
 UPDATE_INTERVAL = 3600  # Update every hour
+# made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 
 # Initialize conversation memory
 memory = []
@@ -20,6 +21,7 @@ def update_data():
     try:
         # Implement your data update logic here
         # Fetch new data from the source and update the CSV file
+        # made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
         st.info("Updating data...")
         # (Replace this placeholder with your actual data update process)
         time.sleep(2)  # Simulate data update time
@@ -36,6 +38,7 @@ def main():
     if csv_file is not None:
         try:
             agent = create_csv_agent(OpenAI(temperature=0.7, api_key=OPENAI_API_KEY, verbose=True), csv_file, verbose=True)
+            # made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 
             user_question = st.text_input("Ask a question about your CSV: ")
             if user_question is not None and user_question != "":
@@ -50,6 +53,7 @@ def main():
                         memory.append({"User": user_question, "Agent": response})
 
                         time.sleep(1)  # Introduce a delay to avoid hitting rate limits
+                        # made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
                     
                     except Exception as err:
                         st.error("An error occurred:")
@@ -60,6 +64,7 @@ def main():
        
 
 # Schedule the data update function
+# made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 schedule.every(UPDATE_INTERVAL).seconds.do(update_data)
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_chat import message
 import time
 from streamlit.runtime.scriptrunner import get_script_run_ctx
+# made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 
 from functools import wraps
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -21,6 +22,7 @@ user_api_key = st.sidebar.text_input(
 )
 
 uploaded_file = st.sidebar.file_uploader("Upload CSV", type="csv")
+# made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 
 if uploaded_file:
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
@@ -29,6 +31,7 @@ if uploaded_file:
 
     loader = CSVLoader(file_path=tmp_file_path, encoding="utf-8")
     data = loader.load()
+    # made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 
     # Create embeddings with the API key
     embeddings = OpenAIEmbeddings(openai_api_key=user_api_key)
@@ -46,6 +49,7 @@ if uploaded_file:
         return result["answer"]
 
     # Load memory from file or initialize empty
+    # made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
     memory = load_memory() or {}
 
     def update_memory(query, answer):
@@ -97,6 +101,7 @@ if uploaded_file:
             for i in range(len(st.session_state['generated'])):
                 message(st.session_state["past"][i], is_user=True, key=str(i) + '_user', avatar_style="big-smile")
                 message(st.session_state["generated"][i], key=str(i), avatar_style="thumbs")
+                # made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 
 
 def add_session_state_lock(func):
@@ -125,6 +130,7 @@ def update_data_scheduler():
                     # Replace with your actual data fetching and writing logic
                     # ... (fetch and write updated data to tmp_file) ...
                     tmp_file_path = tmp_file.name
+                    # made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 
                 loader = CSVLoader(file_path=tmp_file_path, encoding="utf-8")
                 data = loader.load()

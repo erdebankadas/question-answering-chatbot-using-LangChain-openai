@@ -3,6 +3,7 @@ from pathlib import Path
 from streamlit_chat import message
 # from streamlit_chat import message, st_chat
 # from langchain.document_loaders import CSVLoader
+# made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 from langchain_community.document_loaders import CSVLoader
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.chains import RetrievalQA
@@ -32,6 +33,7 @@ def extract_key_details(text):  # Replace with your extraction logic
 openai_api_key = st.text_input("Enter your OpenAI API key:", type="password")
 
 os.environ["OPENAI_API_KEY"] = openai_api_key
+# made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 
 st.title('CSV Question and Answer ChatBot')
 
@@ -53,6 +55,7 @@ if csv_file_uploaded is not None:
     index_creator = VectorstoreIndexCreator()
     docsearch = index_creator.from_loaders([loader])
     chain = RetrievalQA.from_chain_type(llm=OpenAI(), chain_type="stuff", retriever=docsearch.vectorstore.as_retriever(), input_key="question")
+    # made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 
     def update_csv_data():
         try:
@@ -81,6 +84,7 @@ if csv_file_uploaded is not None:
     scheduler = BackgroundScheduler()
     scheduler.add_job(update_csv_data, 'interval', minutes=30)  # Adjust interval as needed
     scheduler.start()
+    # made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 
     st.on_session_end(scheduler.shutdown)
 
@@ -108,6 +112,7 @@ if csv_file_uploaded is not None:
         input_text = st.text_input("You: ","Ask Question From your Document?", key="input")
         return input_text
     user_input = get_text()
+    # made by Debanka Das - https://github.com/erdebankadas; also follow my page - https://fossbyte.in/
 
     if user_input:
         output = generate_response(user_input)
